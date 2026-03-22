@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
-    output: 'export',          // Generates a static /out folder
+    output: isProd ? "export" : undefined, // Use static export only for production builds
     images: { unoptimized: true }, // Required for static export (we use canvas anyway)
-    trailingSlash: true,       // GitHub Pages needs this for clean URLs
+    trailingSlash: isProd, // GitHub Pages needs this for clean URLs in production
 };
 module.exports = nextConfig;

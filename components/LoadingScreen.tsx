@@ -12,9 +12,8 @@ const BOOT_LINES = [
   "INIT: Gravity renderer ........... OK",
   "INIT: Orbital mechanics ........... OK",
   "LOAD: Image sequence 196 frames ...",
-  "SYNC: Scroll interpolation ........ OK",
-  "SCAN: Consciousness engine ........ OK",
-  "READY: Deploying The Harsh Protocol",
+  "SYNC: ........ OK",
+  "READY: . . .",
 ];
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
@@ -89,7 +88,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         marginBottom: 24,
         opacity: 0.9,
       }}>
-        THE HARSH PROTOCOL — SYSTEM BOOT
+        Here we go!
       </p>
 
       {/* Terminal log */}

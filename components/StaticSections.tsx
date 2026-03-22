@@ -26,12 +26,22 @@ const PROJECTS = [
     {
         id: "insurance",
         name: "InsureWise — Rural Insurance Assistant",
-        problem: "Make insurance legible for 800 million people without smartphones.",
+        problem: "Make insurance legible for 800 million people.",
         description:
-            "Conversational AI for India's unbanked. Voice input → intent extraction → policy recommendation → plain-language explanation. PWA-first, Hindi-capable, RAG-backed. Built for a hackathon.",
+            "Conversational AI for India's unbanked. Voice input → intent extraction → policy recommendation → explanations. PWA-first, Hindi-capable, RAG-backed. Built for a Tech Championship.",
         tags: ["Next.js", "RAG", "PWA", "Voice", "Hindi NLP"],
         github: "https://github.com/hssuryawanshib23-afk/orchids-insurewise-pwa-prototype",
         live: "https://insurewise-pwa-prototype.vercel.app/",
+    },
+    {
+        id: "swiggy-rag",
+        name: "Swiggy's Financial Report (FY - 23-24) RAG Pipeline",
+        problem: "Make every number and knowledge queryable with grounded answers.",
+        description:
+            "RAG application for Swiggy-style data exploration. Retrieval over indexed content plus LLM answer generation with context-aware responses. Deployed as an interactive Hugging Face Space.",
+        tags: ["Python", "RAG", "LLMs", "Hugging Face", "Vector Search"],
+        github: "https://github.com/hssuryawanshib23-afk/Swiggy-s_RAG_pipeline",
+        live: "https://huggingface.co/spaces/Harsh2806/swiggy-rag",
     },
     {
         id: "forced-ending",
@@ -380,9 +390,10 @@ export default function StaticSections() {
                         {[
                             { label: "Email", href: "mailto:hssuryawanshi_b23@el.vjti.ac.in", text: "hssuryawanshi_b23@el.vjti.ac.in" },
                             { label: "GitHub", href: "https://github.com/hssuryawanshib23-afk", text: "Github" },
+                            { label: "Blog", href: "/blog", text: "Read learnings" },
                             { label: "LinkedIn", href: "https://www.linkedin.com/in/harsh-suryawanshi-206922265/", text: "linkedin.com" },
                         ].map(({ label, href, text }) => (
-                            <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                            <a key={label} href={href} target={href.startsWith("http") || href.startsWith("mailto:") ? "_blank" : undefined} rel={href.startsWith("http") || href.startsWith("mailto:") ? "noopener noreferrer" : undefined}
                                 style={{
                                     display: "flex", alignItems: "center", gap: 16,
                                     textDecoration: "none",
