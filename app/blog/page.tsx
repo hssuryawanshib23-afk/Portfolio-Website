@@ -61,7 +61,6 @@ export default function BlogPage() {
                     }}
                 >
                     I write about what I build, break, and improve.
-                    <code style={{ color: GOLD }}>app/blog/posts.ts</code>.
                 </p>
 
                 <div

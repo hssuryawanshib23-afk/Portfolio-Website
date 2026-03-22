@@ -390,8 +390,8 @@ export default function StaticSections() {
                         {[
                             { label: "Email", href: "mailto:hssuryawanshi_b23@el.vjti.ac.in", text: "hssuryawanshi_b23@el.vjti.ac.in" },
                             { label: "GitHub", href: "https://github.com/hssuryawanshib23-afk", text: "Github" },
-                            { label: "Blog", href: "/blog", text: "Read learnings" },
                             { label: "LinkedIn", href: "https://www.linkedin.com/in/harsh-suryawanshi-206922265/", text: "linkedin.com" },
+                            { label: "Blog", href: "/blog", text: "Read learnings" },
                         ].map(({ label, href, text }) => (
                             <a key={label} href={href} target={href.startsWith("http") || href.startsWith("mailto:") ? "_blank" : undefined} rel={href.startsWith("http") || href.startsWith("mailto:") ? "noopener noreferrer" : undefined}
                                 style={{
@@ -411,7 +411,7 @@ export default function StaticSections() {
                                 </span>
                                 <span style={{
                                     fontFamily: F, fontSize: 14, fontWeight: 400,
-                                    color: "rgba(255,255,255,0.7)",
+                                    color: label === "Blog" ? GOLD : "rgba(255,255,255,0.7)",
                                 }}>
                                     {text}
                                 </span>
