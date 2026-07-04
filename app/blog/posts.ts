@@ -27,6 +27,66 @@ const image = (src: string, alt: string, caption?: string): BlogBlock => ({
 
 export const BLOG_POSTS: BlogPost[] = [
     {
+        slug: "how-brave-works",
+        title: "How Brave Works, Simply",
+        date: "2026-07-05",
+        summary:
+            "A short, realistic explanation of Brave: what it blocks, what it keeps, and why it feels faster than a normal browser.",
+        tags: ["Browsers", "Privacy", "Web"],
+        content: [
+            paragraph("Brave is a web browser built on Chromium, the same open-source browser engine family used by Chrome. That means most websites work normally, extensions usually behave as expected, and the basic browser experience feels familiar."),
+            paragraph("The main difference is what Brave chooses to block by default. A normal webpage often loads the article, images, ads, analytics scripts, social trackers, cookie popups, and small invisible requests that follow you across websites. Brave tries to remove a lot of that extra tracking layer before the page fully loads."),
+            heading("The Simple Flow"),
+            list([
+                "You open a website.",
+                "Brave checks the page requests against its blocking rules.",
+                "Known trackers, aggressive ads, fingerprinting tricks, and some third-party cookies can be blocked.",
+                "The page loads with less background noise.",
+                "You can adjust Shields if a website breaks or needs something specific.",
+            ]),
+            paragraph("This is why Brave can feel faster. It is not magic speed. It is often just doing less unnecessary work. Fewer tracking scripts means fewer network requests, less JavaScript, and less stuff competing for your CPU."),
+            heading("What Shields Do"),
+            paragraph("Brave Shields is the control panel for this behavior. It lets you decide how strict Brave should be on a site. If a page is broken because it expected a blocked script, you can relax Shields for that site instead of changing your whole browser setup."),
+            paragraph("That tradeoff matters. Privacy tools that are too strict can make the web annoying. Tools that are too relaxed do not protect much. Brave tries to sit in the middle: block common tracking by default, but still let normal browsing work."),
+            heading("Search And Rewards"),
+            paragraph("Brave also has its own search engine and an optional rewards system. Brave Search is separate from Google and is designed around more private search. Brave Rewards is optional and lets users see privacy-respecting ads in exchange for BAT tokens."),
+            paragraph("The rewards part is not needed to use Brave. You can ignore it completely and still use Brave as a normal privacy-focused browser."),
+            heading("The Honest Take"),
+            paragraph("Brave is not invisibility mode. Your internet provider, websites you log into, and services you use can still know things about you. But compared to a default browser setup, Brave reduces a lot of casual tracking with very little setup."),
+            quote("The simple version: Brave is Chrome-like browsing with tracker blocking turned on from the start."),
+            paragraph("That is the realistic reason people use it. It keeps the web familiar, removes a lot of background tracking, and gives you a few privacy controls without asking you to become a browser engineer."),
+        ],
+    },
+    {
+        slug: "cpm-in-plain-english",
+        title: "CPM, but make it normal",
+        date: "2023-05-08",
+        summary:
+
+            "A very informal note on CPM, the thing that tells you which tasks are secretly running the whole project.",
+        tags: ["Planning", "Productivity", "CPM"],
+        content: [
+            paragraph("CPM stands for Critical Path Method, which is just a fancy way of saying: figure out the tasks you absolutely cannot mess up if you want the project to finish on time."),
+            paragraph("Think of it like planning a trip with your friends. If one person is late to leave, the whole plan slides. CPM is the map that shows which delays actually matter and which ones are just annoying noise."),
+            image(
+                "/blog/cpm/cpm-diagram.svg",
+                "A simple CPM flow showing tasks A through F, with the critical path highlighted in gold.",
+                "Tiny visual cheat sheet: the gold path is the one that decides the finish date."
+            ),
+            heading("The short version"),
+            list([
+                "List every task.",
+                "Draw the dependencies.",
+                "Find the longest chain of must-finish-before relationships.",
+                "That chain is the critical path.",
+                "If that path slips, the whole project slips.",
+            ]),
+            paragraph("So CPM is not about being fancy. It is about not getting fooled by tasks that feel urgent but do not actually change the finish date. That is the whole superpower."),
+            quote("If you only remember one thing: the critical path is the schedule's spine."),
+            paragraph("It is boring in the best possible way. You use it when you want to stop guessing and start seeing which work really controls the deadline."),
+        ],
+    },
+    {
         slug: "implementing-a-neurips-2024-learning-augmented-algorithm",
         title: "Implementing A NeurIPS 2024 Learning-Augmented Algorithm",
         date: "2026-03-21",
