@@ -27,6 +27,29 @@ const image = (src: string, alt: string, caption?: string): BlogBlock => ({
 
 export const BLOG_POSTS: BlogPost[] = [
     {
+        slug: "notes-from-a-bug-that-was-not-a-bug",
+        title: "Notes From A Bug That Wasn't A Bug",
+        date: "2026-07-06",
+        summary:
+            "A short note on the kind of debugging that ends with a smaller fix than your ego wanted.",
+        tags: ["Debugging", "Engineering", "Notes"],
+        content: [
+            paragraph("The most annoying bugs are the ones that are technically not bugs. The code runs. The page loads. The output is valid. But something still feels slightly off, and nobody can point at the exact line that is guilty."),
+            paragraph("I had one of those recently. I kept looking for a broken condition, a missing await, or some state that was being overwritten. The actual issue was less dramatic: the interface was showing the right thing at the wrong moment, so the user read it as a failure."),
+            heading("What Helped"),
+            list([
+                "I stopped reading the code from top to bottom and used the feature like a first-time user.",
+                "I wrote down what I expected to see before each click.",
+                "I compared that with what the UI actually communicated.",
+                "I ignored the implementation for a while and treated the screen as the source of truth.",
+            ]),
+            paragraph("That changed the shape of the problem. It was not a logic issue. It was a timing and feedback issue. The system knew what was happening, but the user did not."),
+            paragraph("The fix was small: make the loading state honest, keep the previous content stable for a moment, and avoid showing a success-looking state until the action had actually finished."),
+            quote("Sometimes the bug is not that the machine is wrong. Sometimes the bug is that the human has no reason to trust it."),
+            paragraph("I like this kind of lesson because it is easy to forget. Debugging is not always hunting for broken code. A lot of real product work is finding the gap between what the system did and what the person thought it did."),
+        ],
+    },
+    {
         slug: "how-brave-works",
         title: "How Brave Works, Simply",
         date: "2026-07-05",
