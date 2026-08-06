@@ -272,7 +272,7 @@ export default function StaticSections() {
 
                         {/* Resume button */}
                         <a
-                            href="https://drive.google.com/file/d/18Fo0TMoSqtMgWb7y9MPColrwXZuR-ndf/view?usp=sharing"
+                            href="https://drive.google.com/file/d/1wBWMlc-4b-Jo1_tndxNkFPvLHo8n3_xl/view?usp=drive_link"
                             download
                             style={{
                                 display: "inline-flex", alignItems: "center", gap: 10,
