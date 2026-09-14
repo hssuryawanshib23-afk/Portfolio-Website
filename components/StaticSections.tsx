@@ -4,6 +4,16 @@
 
 const PROJECTS = [
     {
+        id: "braingain",
+        name: "BrainGain AI Platform",
+        problem: "Build an AI-powered adaptive learning system for ICSE curriculum.",
+        description:
+            "Led AI/ML initiatives to build an end-to-end adaptive learning platform. Built an OCR pipeline using Python and Generative AI to convert textbooks into 2,500+ structured MCQs. Designed a standardized JSON schema integrated with Bloom's Taxonomy and automated AI validation. Developed a dynamic assessment engine with randomized question selection, chapter-wise filtering, and multiple question types. Implemented authentication, analytics, leaderboards, PDF reports, voice assistant, and ChatBot features, orchestrating a team of 3 developers.",
+        tags: ["Python", "Generative AI", "OCR", "JSON Schema", "Bloom's Taxonomy", "Assessment Engine"],
+        github: "https://github.com/hssuryawanshib23-afk/braingain",
+        live: null,
+    },
+    {
         id: "transformers",
         name: "Transformer from Scratch",
         problem: "Understand attention without PyTorch hand-holding.",
@@ -87,9 +97,10 @@ const PROJECTS = [
 
 const STACK = [
     "Python", "Java", "PyTorch", "NumPy",
-    "LangChain", "OpenCV",
+    "LangChain", "OpenCV", "FastAPI",
     "Next.js", "React", "TypeScript", "Linux",
-    "Verilog", "Git",
+    "Verilog", "Git", "Docker", "Kubernetes",
+    "OCR", "Bloom's Taxonomy", "FAISS",
 ];
 
 // ─── Shared token ─────────────────────────────────────────────────────────────
@@ -257,22 +268,19 @@ export default function StaticSections() {
                             lineHeight: 1.8, color: "rgba(255,255,255,0.6)",
                             margin: "0 0 16px", maxWidth: 480,
                         }}>
-                            I'am a third year Electronics Engineering student at VJTI Mumbai. I got
-                            bored of textbooks, so I started building: Each one
-                            taught me something a lecture couldn't.
+                            Electronics Engineering graduate from VJTI Mumbai. I build systems that bridge the gap between theory and real-world impact.
                         </p>
                         <p style={{
                             fontFamily: F, fontWeight: 300, fontSize: 16,
                             lineHeight: 1.8, color: "rgba(255,255,255,0.6)",
                             margin: "0 0 32px", maxWidth: 480,
                         }}>
-                            Currently: obsessed with how large systems fail at scale, and
-                            building the infrastructure that catches them before they do. Also freelancing for a VJTI alum on production-grade application.
+                            Currently focused on AI-powered product development and large-scale systems engineering. Recently led AI/ML initiatives at BrainGain, building OCR pipelines, assessment engines, and analytics platforms that served 35+ students.
                         </p>
 
                         {/* Resume button */}
                         <a
-                            href="https://drive.google.com/file/d/1wBWMlc-4b-Jo1_tndxNkFPvLHo8n3_xl/view?usp=drive_link"
+                            href="https://drive.google.com/file/d/1eWqknwmLv-EGEhcMh2GqVBXd40ECn1ZF/view?usp=drive_link"
                             download
                             style={{
                                 display: "inline-flex", alignItems: "center", gap: 10,
