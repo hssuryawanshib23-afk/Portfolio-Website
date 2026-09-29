@@ -4,14 +4,44 @@
 
 const PROJECTS = [
     {
+        id: "research-council",
+        name: "Research Council: Multi-Agent Literature Review",
+        problem: "Surface disagreement across sources instead of averaging it away.",
+        description:
+            "6-node LangGraph pipeline: three agents (Evidence, Skeptic, Methodology) analyze a question in parallel, cross-review each other, and a Chairman agent synthesizes a final answer across 7 sequential LLM calls per query. Hybrid retrieval in Neo4j with cosine-similarity vector search over 384-dim MiniLM embeddings; 25 arXiv papers ingested and validated by a 5-test pytest suite.",
+        tags: ["Python", "LangGraph", "Neo4j", "FastAPI", "Groq"],
+        github: "https://github.com/hssuryawanshib23-afk/Research-Council",
+        live: null,
+    },
+    {
+        id: "mumbai-stone",
+        name: "Mumbai in Stone & Concrete",
+        problem: "An accessible alternative to paid architecture walks.",
+        description:
+            "3D walkthrough of 28 Mumbai landmarks across multiple architectural styles, pulling real building heights from OpenStreetMap and live photos and historical context from Wikipedia.",
+        tags: ["MapLibre GL", "OpenFreeMap", "Wikipedia API"],
+        github: "https://github.com/hssuryawanshib23-afk/Mumbai-in-stone-concrete/tree/main",
+        live: "https://mumbai-in-stone-concrete.vercel.app/",
+    },
+    {
+        id: "meshery",
+        name: "Meshery Open Source Contributions",
+        problem: "Find and fix real bugs in a CNCF project.",
+        description:
+            "Reported a high-impact (CVSS 8.7) unauthenticated arbitrary file read in the Meshery server endpoints /api/system/fileView and /api/system/fileDownload, with reproduction steps, severity and remediation guidance. Also fixed a mesheryctl QA failure by aligning Bats e2e tests with updated CLI output (PR #18604).",
+        tags: ["API Security", "Path Traversal", "Bats", "CLI Testing"],
+        github: "https://github.com/meshery/meshery/issues/18375",
+        live: "https://www.vulncheck.com/advisories/meshery-unauthenticated-arbitrary-file-read-via-fileview-and-filedownload",
+    },
+    {
         id: "braingain",
         name: "BrainGain AI Platform",
         problem: "Build an AI-powered adaptive learning system for ICSE curriculum.",
         description:
-            "Led AI/ML initiatives to build an end-to-end adaptive learning platform. Built an OCR pipeline using Python and Generative AI to convert textbooks into 2,500+ structured MCQs. Designed a standardized JSON schema integrated with Bloom's Taxonomy and automated AI validation. Developed a dynamic assessment engine with randomized question selection, chapter-wise filtering, and multiple question types. Implemented authentication, analytics, leaderboards, PDF reports, voice assistant, and ChatBot features, orchestrating a team of 3 developers.",
+            "Shipped a production assessment engine adopted by 35+ students across 102+ tests, with randomized question selection, chapter-wise filtering, and configurable difficulty distribution. Built a Python workflow that turns ICSE textbook content into 2,500+ MCQs across 29 chapters using Generative AI, with 2,132+ questions attempted in production. Designed a JSON schema integrated with Bloom's Taxonomy and AI validation to cut manual review effort.",
         tags: ["Python", "Generative AI", "OCR", "JSON Schema", "Bloom's Taxonomy", "Assessment Engine"],
         github: "https://github.com/hssuryawanshib23-afk/braingain",
-        live: null,
+        live: "https://class-9-icse-online-test-platform.streamlit.app/",
     },
     {
         id: "transformers",
@@ -45,11 +75,11 @@ const PROJECTS = [
     },
     {
         id: "swiggy-rag",
-        name: "Swiggy's Financial Report (FY - 23-24) RAG Pipeline",
-        problem: "Make every number and knowledge queryable with grounded answers.",
+        name: "DocuMind: RAG-based Document Q&A",
+        problem: "Make a dense annual report queryable with grounded answers.",
         description:
-            "RAG application for Swiggy-style data exploration. Retrieval over indexed content plus LLM answer generation with context-aware responses. Deployed as an interactive Hugging Face Space.",
-        tags: ["Python", "RAG", "LLMs", "Hugging Face", "Vector Search"],
+            "Full-stack document Q&A chatbot for Swiggy's annual report. Hybrid pdfplumber + PyMuPDF + Tesseract OCR pipeline handles digital and scanned pages; TF-IDF embeddings in FAISS with a dual-LLM fallback (Gemini & Groq) reach 98% source-citation accuracy at 1.02s average response time.",
+        tags: ["LangChain", "FastAPI", "FAISS", "OCR", "RAG"],
         github: "https://github.com/hssuryawanshib23-afk/Swiggy-s_RAG_pipeline",
         live: "https://huggingface.co/spaces/Harsh2806/swiggy-rag",
     },
@@ -101,6 +131,7 @@ const STACK = [
     "Next.js", "React", "TypeScript", "Linux",
     "Verilog", "Git", "Docker", "Kubernetes",
     "OCR", "Bloom's Taxonomy", "FAISS",
+    "LangGraph", "Neo4j", "Scikit-learn", "Pandas",
 ];
 
 // ─── Shared token ─────────────────────────────────────────────────────────────
@@ -268,20 +299,20 @@ export default function StaticSections() {
                             lineHeight: 1.8, color: "rgba(255,255,255,0.6)",
                             margin: "0 0 16px", maxWidth: 480,
                         }}>
-                            Electronics Engineering graduate from VJTI Mumbai. I build systems that bridge the gap between theory and real-world impact.
+                            Electronics Engineering student at VJTI Mumbai. I build systems that bridge the gap between theory and real-world impact.
                         </p>
                         <p style={{
                             fontFamily: F, fontWeight: 300, fontSize: 16,
                             lineHeight: 1.8, color: "rgba(255,255,255,0.6)",
                             margin: "0 0 32px", maxWidth: 480,
                         }}>
-                            Currently focused on AI-powered product development and large-scale systems engineering. Recently led AI/ML initiatives at BrainGain, building OCR pipelines, assessment engines, and analytics platforms that served 35+ students.
+                            Currently focused on AI-powered product development and multi-agent systems. Previously an AI & Product Development Intern at BrainGain, where I shipped an assessment engine used by 35+ students and a 2,500+ question bank. Open-source contributor to Meshery, and an Allianz Tech Championship 2025 finalist.
                         </p>
 
                         {/* Resume button */}
                         <a
-                            href="https://drive.google.com/file/d/1eWqknwmLv-EGEhcMh2GqVBXd40ECn1ZF/view?usp=drive_link"
-                            download
+                            href="/resume.pdf"
+                            download="Harsh_Suryawanshi_Resume.pdf"
                             style={{
                                 display: "inline-flex", alignItems: "center", gap: 10,
                                 padding: "12px 28px",
