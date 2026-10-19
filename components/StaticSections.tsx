@@ -1,4 +1,4 @@
-"use client";
+import Reveal from "./Reveal";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 
@@ -134,365 +134,160 @@ const STACK = [
     "LangGraph", "Neo4j", "Scikit-learn", "Pandas",
 ];
 
-// ─── Shared token ─────────────────────────────────────────────────────────────
-const GOLD = "#e5a00d";
-const BLUE = "#3b82f6";
-const F = "'Inter', system-ui, sans-serif";
-
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
-function SectionLabel({ children }: { children: string }) {
+function ProjectCard({ p, index }: { p: (typeof PROJECTS)[number]; index: number }) {
     return (
-        <p style={{
-            fontFamily: F, fontSize: 10, letterSpacing: "0.32em",
-            textTransform: "uppercase", color: `rgba(${hexToRgb(GOLD)},0.6)`,
-            margin: "0 0 16px",
-        }}>
-            {children}
-        </p>
+        <Reveal delay={(index % 3) * 90}>
+            <article className="card">
+                <span className="card-num">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{p.name}</h3>
+                <p className="problem">{p.problem}</p>
+                <p className="desc">{p.description}</p>
+                <div className="tags">
+                    {p.tags.map((t) => (
+                        <span key={t} className="tag">{t}</span>
+                    ))}
+                </div>
+                <div className="card-links">
+                    <a href={p.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    {p.live && (
+                        <a href={p.live} target="_blank" rel="noopener noreferrer">Live ↗</a>
+                    )}
+                </div>
+            </article>
+        </Reveal>
     );
 }
 
-function Divider() {
-    return (
-        <div style={{
-            width: "100%", height: 1,
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 30%, rgba(255,255,255,0.07) 70%, transparent)",
-            margin: "80px 0",
-        }} />
-    );
-}
-
-function ProjectCard({ p }: { p: typeof PROJECTS[number] }) {
-    return (
-        <article
-            style={{
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 4,
-                padding: "28px 28px 22px",
-                background: "rgba(255,255,255,0.02)",
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
-                transition: "border-color 0.25s, box-shadow 0.25s, background 0.25s",
-                cursor: "default",
-            }}
-            onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = `rgba(${hexToRgb(GOLD)},0.35)`;
-                el.style.boxShadow = `0 0 32px rgba(${hexToRgb(GOLD)},0.06)`;
-                el.style.background = "rgba(229,160,13,0.03)";
-            }}
-            onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "rgba(255,255,255,0.07)";
-                el.style.boxShadow = "none";
-                el.style.background = "rgba(255,255,255,0.02)";
-            }}
-        >
-            {/* Problem pill */}
-            <p style={{
-                fontFamily: F, fontSize: 10, letterSpacing: "0.15em",
-                textTransform: "uppercase", color: `rgba(${hexToRgb(BLUE)},0.8)`,
-                margin: 0,
-            }}>
-                {p.problem}
-            </p>
-
-            {/* Title */}
-            <h3 style={{
-                fontFamily: F, fontWeight: 700, fontSize: "clamp(18px,2vw,22px)",
-                color: "#fff", margin: 0, letterSpacing: "-0.02em",
-            }}>
-                {p.name}
-            </h3>
-
-            {/* Description */}
-            <p style={{
-                fontFamily: F, fontWeight: 300, fontSize: 14, lineHeight: 1.65,
-                color: "rgba(255,255,255,0.55)", margin: 0, flexGrow: 1,
-            }}>
-                {p.description}
-            </p>
-
-            {/* Tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 4 }}>
-                {p.tags.map((t) => (
-                    <span key={t} style={{
-                        fontFamily: F, fontSize: 10, letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.35)",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: 2, padding: "3px 8px",
-                    }}>
-                        {t}
-                    </span>
-                ))}
-            </div>
-
-            {/* Links */}
-            <div style={{ display: "flex", gap: 16, marginTop: 6 }}>
-                <a href={p.github} target="_blank" rel="noopener noreferrer"
-                    style={linkStyle}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = GOLD; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.3)"; }}
-                >
-                    GitHub ↗
-                </a>
-                {p.live && (
-                    <a href={p.live} target="_blank" rel="noopener noreferrer"
-                        style={linkStyle}
-                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = GOLD; }}
-                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.3)"; }}
-                    >
-                        Live ↗
-                    </a>
-                )}
-            </div>
-        </article>
-    );
-}
-
-const linkStyle: React.CSSProperties = {
-    fontFamily: F, fontSize: 11, letterSpacing: "0.12em",
-    textTransform: "uppercase", color: "rgba(255,255,255,0.3)",
-    textDecoration: "none", transition: "color 0.2s",
-};
+const CONTACT = [
+    { label: "Email", href: "mailto:hssuryawanshi_b23@el.vjti.ac.in", text: "hssuryawanshi_b23@el.vjti.ac.in" },
+    { label: "GitHub", href: "https://github.com/hssuryawanshib23-afk", text: "hssuryawanshib23-afk" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/harsh-suryawanshi-206922265/", text: "linkedin.com" },
+    { label: "Blog", href: "/blog", text: "Read learnings" },
+];
 
 // ─── Main export ──────────────────────────────────────────────────────────────
 
 export default function StaticSections() {
     return (
-        <section
-            style={{
-                position: "relative",
-                zIndex: 50,
-                background: "#050505",
-                paddingBottom: 100,
-            }}
-        >
-            {/* Fade-in gradient from transparent (so canvas fades naturally) */}
-            <div style={{
-                height: 120,
-                background: "linear-gradient(to bottom, transparent, #050505)",
-                pointerEvents: "none",
-            }} />
+        <>
+            {/* ── INTERESTS + BUILDS ───────────────────────────────────────── */}
+            <section className="section" style={{ borderTop: "none", paddingTop: 0 }}>
+                <div className="wrap two-col">
+                    <Reveal>
+                        <div className="note">
+                            <p className="eyebrow">Interests</p>
+                            <h3>Roots</h3>
+                            <p>
+                                Love VLSI and Control Systems (studying them as part of academics) :){"\n"}
+                                Obsessed with open source, DeepTech, exploring &amp; extending research.
+                            </p>
+                        </div>
+                    </Reveal>
+                    <Reveal delay={120}>
+                        <div className="note">
+                            <p className="eyebrow">What I&apos;ve built</p>
+                            <h3>Build highlights</h3>
+                            <p>
+                                Transformers from scratch. A GazeTracker from scratch. RAG pipelines.{"\n"}
+                                Voice models. Lie detector. Portfolio Optimization…
+                            </p>
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
 
-            <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
-
-                {/* ── ABOUT ─────────────────────────────────────────────────────────── */}
-                <div style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }}>
-                    <div style={{ flex: "1 1 400px" }}>
-                        <SectionLabel>About</SectionLabel>
-                        <h2 style={{
-                            fontFamily: F, fontWeight: 800,
-                            fontSize: "clamp(28px,3.5vw,42px)",
-                            letterSpacing: "-0.03em", color: "#fff",
-                            lineHeight: 1.1, margin: "0 0 24px",
-                        }}>
-                            I build things<br />
-                            <span style={{ color: GOLD }}>that shouldn't work</span><br />
-                            until they do.
+            {/* ── ABOUT ────────────────────────────────────────────────────── */}
+            <section className="section" id="about">
+                <div className="wrap two-col">
+                    <Reveal>
+                        <p className="eyebrow">About</p>
+                        <h2 className="h2">
+                            About <span className="accent">me</span>
                         </h2>
-                        <p style={{
-                            fontFamily: F, fontWeight: 300, fontSize: 16,
-                            lineHeight: 1.8, color: "rgba(255,255,255,0.6)",
-                            margin: "0 0 16px", maxWidth: 480,
-                        }}>
-                            Electronics Engineering student at VJTI Mumbai. I build systems that bridge the gap between theory and real-world impact.
-                        </p>
-                        <p style={{
-                            fontFamily: F, fontWeight: 300, fontSize: 16,
-                            lineHeight: 1.8, color: "rgba(255,255,255,0.6)",
-                            margin: "0 0 32px", maxWidth: 480,
-                        }}>
-                            Currently focused on AI-powered product development and multi-agent systems. Previously an AI & Product Development Intern at BrainGain, where I shipped an assessment engine used by 35+ students and a 2,500+ question bank. Open-source contributor to Meshery, and an Allianz Tech Championship 2025 finalist.
-                        </p>
-
-                        {/* Resume button */}
-                        <a
-                            href="/resume.pdf"
-                            download="Harsh_Suryawanshi_Resume.pdf"
-                            style={{
-                                display: "inline-flex", alignItems: "center", gap: 10,
-                                padding: "12px 28px",
-                                border: `1px solid rgba(${hexToRgb(GOLD)},0.4)`,
-                                borderRadius: 2,
-                                background: `rgba(${hexToRgb(GOLD)},0.06)`,
-                                color: GOLD,
-                                fontFamily: F, fontSize: 11, fontWeight: 600,
-                                letterSpacing: "0.2em", textTransform: "uppercase",
-                                textDecoration: "none",
-                                transition: "all 0.25s",
-                            }}
-                            onMouseEnter={(e) => {
-                                const el = e.currentTarget as HTMLElement;
-                                el.style.background = `rgba(${hexToRgb(GOLD)},0.14)`;
-                                el.style.borderColor = GOLD;
-                                el.style.boxShadow = `0 0 20px rgba(${hexToRgb(GOLD)},0.2)`;
-                            }}
-                            onMouseLeave={(e) => {
-                                const el = e.currentTarget as HTMLElement;
-                                el.style.background = `rgba(${hexToRgb(GOLD)},0.06)`;
-                                el.style.borderColor = `rgba(${hexToRgb(GOLD)},0.4)`;
-                                el.style.boxShadow = "none";
-                            }}
-                        >
-                            <span style={{ fontSize: 14 }}>↓</span>
-                            Download Résumé
-                        </a>
-                    </div>
-                </div>
-
-                <Divider />
-
-                {/* ── PROJECTS ──────────────────────────────────────────────────────── */}
-                <SectionLabel>Projects</SectionLabel>
-                <h2 style={{
-                    fontFamily: F, fontWeight: 800,
-                    fontSize: "clamp(28px,3.5vw,42px)",
-                    letterSpacing: "-0.03em", color: "#fff",
-                    margin: "0 0 48px",
-                }}>
-                    Some of the things I've built
-                </h2>
-
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-                    gap: 20,
-                }}>
-                    {PROJECTS.map((p) => <ProjectCard key={p.id} p={p} />)}
-                </div>
-
-                <Divider />
-
-                {/* ── STACK ─────────────────────────────────────────────────────────── */}
-                <SectionLabel>Stack</SectionLabel>
-                <h2 style={{
-                    fontFamily: F, fontWeight: 800,
-                    fontSize: "clamp(28px,3.5vw,42px)",
-                    letterSpacing: "-0.03em", color: "#fff",
-                    margin: "0 0 36px",
-                }}>
-                    Tools I reach for
-                </h2>
-
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                    {STACK.map((s) => (
-                        <span key={s} style={{
-                            fontFamily: F, fontSize: 12, fontWeight: 500,
-                            letterSpacing: "0.06em",
-                            color: "rgba(255,255,255,0.7)",
-                            border: "1px solid rgba(255,255,255,0.1)",
-                            borderRadius: 3, padding: "8px 16px",
-                            background: "rgba(255,255,255,0.02)",
-                            transition: "all 0.2s",
-                            cursor: "default",
-                        }}
-                            onMouseEnter={(e) => {
-                                const el = e.currentTarget as HTMLElement;
-                                el.style.borderColor = `rgba(${hexToRgb(BLUE)},0.5)`;
-                                el.style.color = "#fff";
-                                el.style.background = `rgba(${hexToRgb(BLUE)},0.06)`;
-                            }}
-                            onMouseLeave={(e) => {
-                                const el = e.currentTarget as HTMLElement;
-                                el.style.borderColor = "rgba(255,255,255,0.1)";
-                                el.style.color = "rgba(255,255,255,0.7)";
-                                el.style.background = "rgba(255,255,255,0.02)";
-                            }}
-                        >
-                            {s}
-                        </span>
-                    ))}
-                </div>
-
-                <Divider />
-
-                {/* ── CONTACT ───────────────────────────────────────────────────────── */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 40 }}>
-                    <div>
-                        <SectionLabel>Contact</SectionLabel>
-                        <h2 style={{
-                            fontFamily: F, fontWeight: 800,
-                            fontSize: "clamp(28px,3.5vw,48px)",
-                            letterSpacing: "-0.03em", color: "#fff",
-                            margin: "0 0 8px", lineHeight: 1.05,
-                        }}>
-                            Let's work on<br />
-                            <span style={{ color: GOLD }}>something real.</span>
-                        </h2>
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 8 }}>
-                        {[
-                            { label: "Email", href: "mailto:hssuryawanshi_b23@el.vjti.ac.in", text: "hssuryawanshi_b23@el.vjti.ac.in" },
-                            { label: "GitHub", href: "https://github.com/hssuryawanshib23-afk", text: "Github" },
-                            { label: "LinkedIn", href: "https://www.linkedin.com/in/harsh-suryawanshi-206922265/", text: "linkedin.com" },
-                            { label: "Blog", href: "/blog", text: "Read learnings" },
-                        ].map(({ label, href, text }) => (
-                            <a key={label} href={href} target={href.startsWith("http") || href.startsWith("mailto:") ? "_blank" : undefined} rel={href.startsWith("http") || href.startsWith("mailto:") ? "noopener noreferrer" : undefined}
-                                style={{
-                                    display: "flex", alignItems: "center", gap: 16,
-                                    textDecoration: "none",
-                                    transition: "opacity 0.2s",
-                                }}
-                                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.7"; }}
-                                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
-                            >
-                                <span style={{
-                                    fontFamily: F, fontSize: 9, letterSpacing: "0.2em",
-                                    textTransform: "uppercase", color: "rgba(255,255,255,0.25)",
-                                    width: 56, flexShrink: 0,
-                                }}>
-                                    {label}
-                                </span>
-                                <span style={{
-                                    fontFamily: F, fontSize: 14, fontWeight: 400,
-                                    color: label === "Blog" ? GOLD : "rgba(255,255,255,0.7)",
-                                }}>
-                                    {text}
-                                </span>
+                    </Reveal>
+                    <Reveal delay={120}>
+                        <div className="about-body">
+                            <p>
+                                Electronics Engineering student at VJTI Mumbai. I build systems that bridge the gap between theory and real-world impact.
+                            </p>
+                            <p>
+                                Currently focused on AI-powered product development and multi-agent systems. Previously an AI &amp; Product Development Intern at BrainGain, where I shipped an assessment engine used by 35+ students and a 2,500+ question bank. Open-source contributor to Meshery, and an Allianz Tech Championship 2025 finalist.
+                            </p>
+                            <a className="btn" href="/resume.pdf" download="Harsh_Suryawanshi_Resume.pdf">
+                                <span aria-hidden>↓</span> Download Résumé
                             </a>
-                        ))}
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+
+            {/* ── PROJECTS ─────────────────────────────────────────────────── */}
+            <section className="section" id="projects">
+                <div className="wrap">
+                    <Reveal className="section-head">
+                        <p className="eyebrow">Projects</p>
+                        <h2 className="h2">Selected <span className="accent">projects</span></h2>
+                    </Reveal>
+                    <div className="grid">
+                        {PROJECTS.map((p, i) => <ProjectCard key={p.id} p={p} index={i} />)}
                     </div>
                 </div>
+            </section>
 
-                {/* Footer line */}
-                <div style={{
-                    marginTop: 80,
-                    paddingTop: 24,
-                    borderTop: "1px solid rgba(255,255,255,0.06)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    gap: 12,
-                }}>
-                    <p style={{
-                        fontFamily: F, fontSize: 10, letterSpacing: "0.15em",
-                        textTransform: "uppercase", color: "rgba(255,255,255,0.18)", margin: 0,
-                    }}>
-                        © 2026 Harsh Sunil Suryawanshi
-                    </p>
-                    <p style={{
-                        fontFamily: F, fontSize: 10, letterSpacing: "0.15em",
-                        textTransform: "uppercase", color: "rgba(255,255,255,0.18)", margin: 0,
-                    }}>
-                        Built in Next.js · VJTI Mumbai
-                    </p>
+            {/* ── STACK ────────────────────────────────────────────────────── */}
+            <section className="section" id="stack">
+                <div className="wrap">
+                    <Reveal className="section-head">
+                        <p className="eyebrow">Stack</p>
+                        <h2 className="h2">Tech <span className="accent">stack</span></h2>
+                    </Reveal>
+                    <Reveal delay={100}>
+                        <div className="stack">
+                            {STACK.map((s) => <span key={s}>{s}</span>)}
+                        </div>
+                    </Reveal>
                 </div>
+            </section>
 
-            </div>
-        </section>
+            {/* ── CONTACT ──────────────────────────────────────────────────── */}
+            <section className="section" id="contact">
+                <div className="wrap">
+                    <div className="contact">
+                        <Reveal>
+                            <p className="eyebrow">Contact</p>
+                            <h2 className="h2">
+                                Get in <span className="accent">touch</span>
+                            </h2>
+                        </Reveal>
+                        <Reveal delay={120}>
+                            <ul className="contact-links">
+                                {CONTACT.map(({ label, href, text }) => {
+                                    const external = href.startsWith("http") || href.startsWith("mailto:");
+                                    return (
+                                        <li key={label}>
+                                            <a
+                                                href={href}
+                                                target={external ? "_blank" : undefined}
+                                                rel={external ? "noopener noreferrer" : undefined}
+                                            >
+                                                <span className="k">{label}</span>
+                                                <span className="v">{text}</span>
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </Reveal>
+                    </div>
+
+                    <div className="footer">
+                        <span>© 2026 Harsh Sunil Suryawanshi</span>
+                        <span>Built in Next.js · VJTI Mumbai</span>
+                    </div>
+                </div>
+            </section>
+        </>
     );
-}
-
-// ─── Util ─────────────────────────────────────────────────────────────────────
-function hexToRgb(hex: string) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `${r},${g},${b}`;
 }
