@@ -126,12 +126,8 @@ const PROJECTS = [
 ];
 
 const STACK = [
-    "Python", "Java", "PyTorch", "NumPy",
-    "LangChain", "OpenCV", "FastAPI",
-    "Next.js", "React", "TypeScript", "Linux",
-    "Verilog", "Git", "Docker", "Kubernetes",
-    "OCR", "Bloom's Taxonomy", "FAISS",
-    "LangGraph", "Neo4j", "Scikit-learn", "Pandas",
+    "Python", "PyTorch", "NumPy", "LangChain", "LangGraph",
+    "FastAPI", "Next.js", "TypeScript", "Verilog", "Docker",
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
